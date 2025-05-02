@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black; /* Set background to black */
+}
+
+#container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+#menu-icons {
+    position: absolute;
+    top: 100px; /* Adjust the vertical position */
+    right: 100px; /* Adjust the horizontal position */
+    display: flex;
+    gap: 20px; /* Add spacing between the icons */
+}
+
+#menu-icons i {
+    font-size: 24px; /* Adjust the size of the icons */
+    cursor: pointer; /* Add a pointer cursor for interactivity */
+}
