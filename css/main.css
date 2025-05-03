@@ -5,6 +5,34 @@ body {
     justify-content: center;
     align-items: center;
     background-color: black; /* Set background to black */
+    transition: background-color 0.02s ease-in-out;
+}
+
+#overlay {
+    position: fixed; /* Make it cover the entire screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Black with slight transparency */
+    z-index: 999; /* Ensure it is above all other content */
+    display: flex; /* Use Flexbox for centering */
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+    transition: opacity 0.3s ease; /* Smooth fade-in/out effect */
+    opacity: 0; /* Start with 0 opacity */
+    display: none; /* Initially hidden */
+    place-items: center; /* Center items in the overlay */
+}
+
+#overlay h1 {
+    color: #f70608; /* Make the text white */
+    font-size: 3rem; /* Make the text large */
+    text-align: center; /* Center the text */
+    margin: 0; /* Remove default margin */
+    font-family: "Times New Roman", Times, serif; /* Use Times New Roman font */
+    letter-spacing: 0.1em; /* Add spacing between letters */
+    transform: scaleY(7); /* Elongate the text vertically */
 }
 
 /* Header container for logo and menu icons */
@@ -14,15 +42,34 @@ body {
     align-items: center; /* Vertically align logo and icons */
     position: absolute;
     top: 0;
-    width: 100%; /* Make the header span the full width */
+    width: 90%; /* Make the header span the full width */
     padding: 20px; /* Add padding around the header */
     box-sizing: border-box; /* Include padding in width calculations */
 }
 
+/* Ensure menu and close icons have the same size */
+#menu-icon,
+#close-icon {
+    width: 24px; /* Set a fixed width */
+    height: 24px; /* Set a fixed height */
+    display: inline-block; /* Ensure they are inline elements */
+    text-align: center; /* Center the icon */
+    line-height: 24px; /* Vertically center the icon */
+    font-size: 24px; /* Set the font size */
+    transition: all 0.3s ease; /* Add a smooth transition for toggling */
+}
+
+#menu-icons #close-icon {
+    color: red !important; /* Force the color to red */
+    z-index: 1000; /* Ensure it is above the overlay */
+    position: relative;
+}
+
 /* Logo styling */
 #logo img {
-    max-height: 50px; /* Adjust the logo size */
+    max-height: 100px; /* Adjust the logo size */
     display: block;
+    transition: opacity 1s ease-in-out; 
 }
 
 /* Menu icons container */
@@ -43,4 +90,12 @@ body {
 /* Hover effect for icons */
 #menu-icons i:hover {
     background-color: rgba(255, 255, 255, 0.1); /* Add a hover effect */
+}
+
+
+#toggle-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    transition: opacity 0.5s ease-in-out; /* Smooth fade-in effect for the image */
 }
