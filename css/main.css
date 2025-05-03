@@ -7,22 +7,40 @@ body {
     background-color: black; /* Set background to black */
 }
 
-#container img {
-    max-width: 100%;
-    height: auto;
+/* Header container for logo and menu icons */
+#header {
+    display: flex;
+    justify-content: space-between; /* Push logo to the left and icons to the right */
+    align-items: center; /* Vertically align logo and icons */
+    position: absolute;
+    top: 0;
+    width: 100%; /* Make the header span the full width */
+    padding: 20px; /* Add padding around the header */
+    box-sizing: border-box; /* Include padding in width calculations */
+}
+
+/* Logo styling */
+#logo img {
+    max-height: 50px; /* Adjust the logo size */
     display: block;
 }
 
-
+/* Menu icons container */
 #menu-icons {
-    position: absolute;
-    top: 100px; /* Adjust the vertical position */
-    right: 100px; /* Adjust the horizontal position */
     display: flex;
-    gap: 20px; /* Add spacing between the icons */
+    gap: 15px; /* Add spacing between the icons */
 }
 
+/* Individual menu icons */
 #menu-icons i {
     font-size: 24px; /* Adjust the size of the icons */
     cursor: pointer; /* Add a pointer cursor for interactivity */
+    padding: 10px; /* Add padding around each icon */
+    border-radius: 50%; /* Optional: Make the padding circular */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for icons */
+#menu-icons i:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Add a hover effect */
 }
