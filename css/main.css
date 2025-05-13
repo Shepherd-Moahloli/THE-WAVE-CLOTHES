@@ -58,6 +58,14 @@ body {
     margin-bottom:1.5rem;
 }
 
+#registration-form input[type="text"],
+#registration-form input[type="email"] {
+  width: 400px; /* Adjust as needed */
+  max-width: 90%;
+  margin: 0.5rem auto;
+  display: block;
+}
+
 #registration-modal {
     position:fixed;
     top:0;
@@ -99,7 +107,7 @@ body {
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.2s;
-  width: 50%;
+  width: 40%;
   margin: 0 auto;
   display: block;
 }
