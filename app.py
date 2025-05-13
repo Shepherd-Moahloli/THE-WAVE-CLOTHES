@@ -18,10 +18,11 @@ def register():
 
     # Compose email
     msg = EmailMessage()
-    msg['Subject'] = 'New Registration'
-    msg['From'] = YOUR_EMAIL
+    msg['Subject'] = f'HOOD REVENGE REGISTRATION: {name} <{email}>'
+    msg['From'] = YOUR_EMAIL  # Must be your Gmail for SMTP
     msg['To'] = YOUR_EMAIL
-    msg.set_content(f"New registration:\nName: {name}\nEmail: {email}")
+    msg['Reply-To'] = f'{name} <{email}>'
+    msg.set_content(f"HOOD REVENGE REGISTRATION:\nName: {name}\nEmail: {email}")
 
     # Send email (using Gmail SMTP as example)
     try:
