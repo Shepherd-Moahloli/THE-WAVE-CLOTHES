@@ -109,6 +109,7 @@ body {
   transition: background 0.2s;
   width: 40%;
   margin: 0 auto;
+  margin-top: 2rem;
   display: block;
 }
 #registration-modal button[type="submit"]:hover {
