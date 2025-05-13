@@ -127,4 +127,39 @@ window.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+
+  // Show thank you message after registration (AJAX to Formspree)
+  const regForm = document.getElementById("registration-form");
+  if (regForm) {
+    regForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const formData = new FormData(regForm);
+      fetch(regForm.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      })
+        .then((response) => {
+          if (response.ok) {
+            regForm.style.display = "flex";
+            regForm.style.flexDirection = "column";
+            regForm.style.justifyContent = "center";
+            regForm.style.alignItems = "center";
+            regForm.innerHTML =
+              '<h2 style="color:#b80000;text-align:center;">Thank You!<br><span style="color:#222;font-size:1.1rem;">We will be in touch.</span></h2>';
+            setTimeout(function () {
+              document.getElementById("registration-modal").style.display =
+                "none";
+            }, 3000);
+          } else {
+            alert(
+              "There was a problem submitting your form. Please try again."
+            );
+          }
+        })
+        .catch(() => {
+          alert("There was a problem submitting your form. Please try again.");
+        });
+    });
+  }
 });
