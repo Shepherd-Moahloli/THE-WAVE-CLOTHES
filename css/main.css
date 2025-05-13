@@ -35,6 +35,78 @@ body {
     transform: scaleY(7); /* Elongate the text vertically */
 }
 
+#registration-form {
+    background:#ffffff;
+    padding:5rem 10rem;
+    border-radius: 2rem;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+    display:flex;
+    flex-direction:column;gap:1rem;min-width:300px;
+}
+
+#registration-form h2, #registration-form p {
+    margin:0;
+    font-size:2rem;
+    color:#888;
+    text-align:center;
+}
+
+#registration-form p {
+    font-size:0.8rem;
+    color:#888;
+
+    margin-bottom:1.5rem;
+}
+
+#registration-modal {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background:rgba(0,0,0,0.7);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+    text-align: center;
+    font-family: sans-serif;
+    padding: 0%;
+}
+
+/* Style for registration modal inputs */
+#registration-modal input[type="text"],
+#registration-modal input[type="email"] {
+  padding: 0.75rem 1rem;
+  border-radius: 2rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  outline: none;
+  transition: border 0.2s;
+}
+#registration-modal input[type="text"]:focus,
+#registration-modal input[type="email"]:focus {
+  border: 1.5px solid #b80000;
+  box-shadow: 0 0 0 2px rgba(184,0,0,0.1);
+}
+#registration-modal button[type="submit"] {
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
+  border: none;
+  background: #b80000;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 50%;
+  margin: 0 auto;
+  display: block;
+}
+#registration-modal button[type="submit"]:hover {
+  background: #444;
+}
+
 /* Header container for logo and menu icons */
 #header {
     display: flex;
@@ -98,4 +170,41 @@ body {
     height: auto;
     display: block;
     transition: opacity 0.5s ease-in-out; /* Smooth fade-in effect for the image */
+}
+
+@media (max-width: 768px) {
+
+    #header {
+        display: block;
+        width: 100%; /* Make the header span the full width */
+        padding: 10px; /* Reduce padding for mobile */
+    }
+
+    #header #logo {
+        width: 300px;
+    }
+    /* Adjust logo size */
+    #header #logo img {
+        max-height: 1000px; /* Make the logo smaller for mobile */
+        display: block;
+    }
+
+    /* Adjust menu and close icons */
+    #menu-icon,
+    #close-icon {
+        width: 100px; /* Explicitly set a larger width */
+        height: 100px; /* Explicitly set a larger height */
+        font-size: 100px; /* Explicitly set a larger font size */
+        line-height: 100px; /* Adjust vertical alignment */
+    }
+
+    /* Adjust spacing between icons */
+    #menu-icons {
+        gap: 10px; /* Add spacing between icons */
+    }
+
+    /* Adjust padding for the header */
+    #header {
+        padding: 10px; /* Reduce padding for mobile */
+    }
 }

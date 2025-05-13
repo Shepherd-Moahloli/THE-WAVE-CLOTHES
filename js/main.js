@@ -99,3 +99,32 @@ function toggleBackground() {
     isBlackBackground = !isBlackBackground;
   }, 700); // Match the CSS transition duration
 }
+
+window.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("registration-modal").style.display = "flex";
+  var closeBtn = document.getElementById("close-registration");
+  if (closeBtn) {
+    closeBtn.onclick = function () {
+      document.getElementById("registration-modal").style.display = "none";
+    };
+  }
+  // Highlight register button red when any input is focused
+  const regInputs = [
+    document.getElementById("reg-name"),
+    document.getElementById("reg-email"),
+  ];
+  const regButton = document.querySelector(
+    '#registration-form button[type="submit"]'
+  );
+  regInputs.forEach((input) => {
+    input.addEventListener("focus", function () {
+      regButton.style.background = "#b80000";
+    });
+    input.addEventListener("blur", function () {
+      // Only remove red if neither input is focused
+      if (!regInputs.some((inp) => inp === document.activeElement)) {
+        regButton.style.background = "";
+      }
+    });
+  });
+});
