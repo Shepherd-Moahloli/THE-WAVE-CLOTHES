@@ -1,7 +1,8 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response, send_from_directory
 import smtplib
 from email.message import EmailMessage
 from flask_cors import CORS
+import sys
 
 app = Flask(__name__)
 CORS(app)  # Allow requests from your frontend
@@ -9,10 +10,26 @@ CORS(app)  # Allow requests from your frontend
 YOUR_EMAIL = "shepherdmoahloli122@gmail.com"
 YOUR_EMAIL_PASSWORD = "hrxssddzgxhtuzkg"  # Use your 16-character app password, no spaces needed
 
+# Password protection credentials
+USERNAME = "HoodRevenge"
+PASSWORD = "Abutibulaboot22"
+
+# Add your project directory to the sys.path
+project_home = '/home/HoodRevenge'
+if project_home not in sys.path:
+    sys.path = [project_home] + sys.path
+
+# Import your Flask app
+from app import app as application  # noqa
+
+@app.route('/', methods=['GET'])
+def home():
+    return send_from_directory('./', 'index.html')
+
 @app.route('/register', methods=['POST'])
 def register():
-    name = request.form.get('name')
-    email = request.form.get('email')
+    name = request.json.get('name')
+    email = request.json.get('email')
     if not name or not email:
         return jsonify({'success': False, 'error': 'Missing fields'}), 400
 
@@ -32,6 +49,19 @@ def register():
         return jsonify({'success': True})
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
+
+# Serve static files from the css, js, and images directories
+@app.route('/css/<path:filename>')
+def serve_css(filename):
+    return send_from_directory('css', filename)
+
+@app.route('/js/<path:filename>')
+def serve_js(filename):
+    return send_from_directory('js', filename)
+
+@app.route('/images/<path:filename>')
+def serve_images(filename):
+    return send_from_directory('images', filename)
 
 if __name__ == '__main__':
     app.run(port=5000)
