@@ -28,9 +28,12 @@ def home():
 
 @app.route('/register', methods=['POST'])
 def register():
-    name = request.json.get('name')
-    email = request.json.get('email')
+    app.logger.debug('Incoming request data: %s', request.json)
+    name = request.form.get('name')
+    email = request.form.get('email')   
+    app.logger.info(f"Received registration: name={name}, email={email}")
     if not name or not email:
+        app.logger.error('Missing fields: name=%s, email=%s', name, email)
         return jsonify({'success': False, 'error': 'Missing fields'}), 400
 
     # Compose email
@@ -43,11 +46,14 @@ def register():
 
     # Send email (using Gmail SMTP as example)
     try:
+        app.logger.debug('Attempting to send email: name=%s, email=%s', name, email)
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
             smtp.login(YOUR_EMAIL, YOUR_EMAIL_PASSWORD)
             smtp.send_message(msg)
+        app.logger.info('Email sent successfully: name=%s, email=%s', name, email)
         return jsonify({'success': True})
     except Exception as e:
+        app.logger.error('Error sending email: %s', str(e))
         return jsonify({'success': False, 'error': str(e)}), 500
 
 # Serve static files from the css, js, and images directories
@@ -64,4 +70,4 @@ def serve_images(filename):
     return send_from_directory('images', filename)
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(host='0.0.0.0', port=8080)
