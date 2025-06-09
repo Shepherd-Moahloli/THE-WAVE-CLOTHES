@@ -28,9 +28,10 @@ def home():
 
 @app.route('/register', methods=['POST'])
 def register():
-    app.logger.debug('Incoming request data: %s', request.json)
     name = request.form.get('name')
-    email = request.form.get('email')   
+    email = request.form.get('email')
+    app.logger.debug('Incoming form data: name=%s, email=%s', name, email)
+
     app.logger.info(f"Received registration: name={name}, email={email}")
     if not name or not email:
         app.logger.error('Missing fields: name=%s, email=%s', name, email)
